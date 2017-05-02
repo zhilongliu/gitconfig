@@ -1,0 +1,183 @@
+[include]
+	path = ~/private/.gitconfig
+[apply]
+	whitespace = fix
+[user]
+	name = Ramkumar Ramachandra
+	email = artagnon@gmail.com
+[github]
+	user = artagnon
+[format]
+	signoff = true
+	coverLetter = auto
+	defaultTo = master
+[sendemail]
+	smtpuser = artagnon@gmail.com
+	suppresscc = self
+	smtpserver = smtp.gmail.com
+	smtpserverport = 587
+	smtpencryption = tls
+	chainreplyto = false
+[push]
+	default = current
+[pretty]
+	lg = %C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr %an)%C(reset)
+[alias]
+	l = log
+	lr = log --reverse --no-merges
+	lp = log -p --no-merges
+	l1 = log -1 -p
+	lrp = log --reverse -p --no-merges
+	lf = log --follow
+	la = !git log --author=\"$(git config --get user.name)\"
+	sl = shortlog -ns --no-merges --since=3.months
+	sle = shortlog -nse --no-merges --since=3.months
+	sli = shortlog -ns --no-merges
+	slei = shortlog -nse --no-merges
+	sla = !git shortlog -ns --no-merges --author=\"$(git config --get user.name)\"
+	s = status
+	sh = show
+	shs = show -s
+	c = clone
+	co = checkout
+	cof = checkout -f
+	cob = checkout -b
+	com = checkout master
+	ci = commit
+	cia = commit --amend
+	cim = commit -m
+	ciaa = commit --amend -a
+	ciam = commit -am
+	cial = commit -a
+	cp = cherry-pick
+	cpc = cherry-pick --continue
+	cpa = cherry-pick --abort
+	cpq = cherry-pick --quit
+	fp = !rm -rf outgoing && git format-patch -M -C -o outgoing
+	fp1 = !rm -rf outgoing && git format-patch -1 -M -C -o outgoing
+	fpm = !rm -rf outgoing && git format-patch -M -C -o outgoing master
+	fpo = format-patch --stdout -M -C
+	clf = clang-format
+	se = send-email
+	sel = !git send-email --to=\"LKML <linux-kernel@vger.kernel.org>\" ~/src/linux/outgoing/*.patch
+	se-git = !git send-email --to=\"Git List <git@vger.kernel.org>\" ~/src/git/outgoing/*.patch
+	se-llvm = !git send-email --to=\"LLVMdev <llvmdev@cs.uiuc.edu>\" ~/src/llvm/outgoing/*.patch
+	se-cedet = !git send-email --to=\"cedet-devel <cedet-devel@lists.sourceforge.net>\" ~/src/cedet/outgoing/*.patch
+	se-clang = !git send-email --to=\"cfe-commits <cfe-commits@cs.uiuc.edu>\" ~/src/clang/outgoing/*.patch
+	graph = log --graph --decorate --pretty=oneline --abbrev-commit
+	rv = log --reverse origin..
+	rvp = log -p --reverse origin..
+	r = reset
+	rh = reset --hard
+	rhu = reset --hard @{u}
+	re = rebase
+	reo = rebase --onto
+	ri = rebase -i
+	rim = rebase -i master
+	rc = rebase --continue
+	ra = rebase --abort
+	rs = rebase --skip
+	ss = stash save
+	ssk = stash save --keep-index
+	sp = stash pop
+	sd = stash drop
+	sc = stash clear
+	p = push
+	pup = push -u
+	pf = push -f
+	f = fetch
+	fo = fetch origin
+	fa = fetch --all
+	pu = pull
+	b = blame -M -CC
+	bD = branch -D
+	bM = branch -M
+	br = branch
+	bru = branch -u
+	brum = branch -u master
+	fer = for-each-ref
+	hot = for-each-ref --format='%(color:red)%(HEAD) %(color:green)%(refname:short)%(color:reset)%(upstream:trackshort)' --count 10 --sort='-committerdate' refs/heads
+	bra = branch -a
+	m = merge
+	fb = filter-branch
+	rp = rev-parse
+	rps = rev-parse --symbolic-full-name
+	rl = rev-list
+	rsh = remote show -n
+	rad = remote add
+	rrm = remote rm
+	rpr = remote prune
+	rre = remote rename
+	rsu = remote set-url
+	sad = submodule add
+	a = add
+	d = diff
+	dni = diff --no-index
+	dc = diff --cached
+        o = diff --name-status @{u}
+	g = grep -p
+	gl = grep -l
+	gi = grep -i
+	g0 = grep -p --max-depth 0
+	fg = !git ls-files | grep -E
+	rfl = log --oneline --relative-date -g
+	conf = config
+	desc = describe --always --contains --all
+	ref = log -1 --date=short --pretty='%h (%s, %ad)'
+	fixes = log -1 --abbrev=12 --pretty='Fixes: %h (%s)'
+	h = help
+	cf = cat-file
+[man]
+	viewer = woman
+[status]
+	short = true
+	branch = true
+[pull]
+	rebase = true
+[merge]
+	conflictstyle = diff3
+	log = 10
+	defaultToUpstream = true
+[rerere]
+	enabled = true
+[rebase]
+	autosquash = true
+	autostash = true
+[diff]
+	submodule = log
+	tool = vimdiff2
+[pack]
+	usebitmaps = true
+[grep]
+	lineNumber = true
+[log]
+	date = relative
+	mailmap = true
+[blame]
+	date = relative
+	blankboundary = true
+	showroot = true
+[advice]
+	pushUpdateRejected = false
+	statusHints = false
+	commitBeforeMerge = false
+	resolveConflict = false
+	implicitIdentity = false
+	detachedHead = false
+	amWorkDir = false
+[clean]
+	requireForce = false
+[credential]
+	helper = cache --timeout 36000
+[url "git@github.com:artagnon/"]
+	insteadOf = gh:artagnon/
+[url "git@github.com:klug/"]
+	insteadOf = gh:klug/
+[url "git://github.com/"]
+	insteadOf = gh:
+[url "git@insidelabs-git.mathworks.com:"]
+	insteadOf = mw:
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+required = true
